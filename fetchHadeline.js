@@ -5,14 +5,15 @@ let date = require('date-and-time');
 
 
 module.exports= function fetchHadeline (site,url,cl) {
-  let json= fs.readFileSync(`./${site}.json`,'utf8')
+  let json= fs.readFileSync(`./hadlines.json`,'utf8')
    json =JSON.parse(json)
-  const headlinfromFile =json.healdeLine
+  const headlinfromFile =json.healdeLine[site]
+
 
 function getHadline($,headlinfromFile) {
   console.log(headlinfromFile)
   const healdeLine=cl($)
-  if(headlinfromFile==healdeLine){
+  if(headlinfromFile.headline==healdeLine){
     return false
   }else{
     let now = new Date();
@@ -22,9 +23,9 @@ function getHadline($,headlinfromFile) {
       healdeLine
   
      }
+  json[site]=obj
   
-  
-    fs.writeFile(`${site}.json`,JSON.stringify(obj))
+    fs.writeFile(`./hadlines.json`,JSON.stringify(json))
   }
   
     
