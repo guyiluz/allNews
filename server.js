@@ -10,7 +10,7 @@ app.get('/', function (req, res) {
 });
 
 io.on('connection', function (socket) {
-    const news=   fs.readFileSync("./haaretz.json","utf8")
+    const news=   fs.readFileSync("./hadlines.json","utf8")
   
 
 
@@ -23,10 +23,10 @@ io.on('connection', function (socket) {
 
 
 
-  fs.watchFile("./haaretz.json", function() {
+  fs.watchFile("./hadlines.json", function() {
     
     console.log("just changed.");
-  const news=   fs.readFileSync("./haaretz.json","utf8")
+  const news=   fs.readFileSync("./hadlines.json","utf8")
   console.log(news)
     socket.emit('news', news);
   });
